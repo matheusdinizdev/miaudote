@@ -16,3 +16,6 @@ db.sqlite3
 
 # VS Code
 .vscode/
+
+# Arquivos do MacOS
+.DS_Store
