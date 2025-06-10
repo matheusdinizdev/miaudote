@@ -1,0 +1,163 @@
+/* CSS RESET */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* HEADER */
+
+.header {
+  height: 130px;
+  background: #A8E6C4;
+}
+
+.header-container img {
+  margin-left: 140px;
+  margin-top: 75px;
+}
+
+@media (max-width: 1000px) {
+  .header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .header-container img {
+    margin-left: 0;
+    margin-top: 0;
+  }
+}
+
+nav {
+  background: #FBEBA9;
+  height: 45px;
+  display: flex;
+  gap: 75px;
+  align-items: center;
+  justify-content: center;
+}
+
+nav a {
+  color: #000;
+  font-family: Poppins;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+}
+
+/* MAIN */
+
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: Poppins, sans-serif;
+}
+
+.login-container h1 {
+  margin-bottom: 10px;
+  font-family: Prata, serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.login-container p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-container label {
+  text-align: left;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.login-container input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.login-container button {
+  padding: 10px;
+  background-color: #A8E6C4;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #8ddcb0;
+}
+
+.linha-ou {
+  margin: 20px 0;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+}
+
+.linha-ou::before,
+.linha-ou::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #ccc;
+}
+
+.linha-ou::before {
+  left: 0;
+}
+
+.linha-ou::after {
+  right: 0;
+}
+
+.cadastro-msg {
+  font-size: 14px;
+}
+
+.cadastro-msg a {
+  color: #007BFF;
+}
