@@ -2,24 +2,68 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from core.models import CustomUser , PessoaFisica, ONG, Animal
 
 def login_view(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
+        username = request.POST.get('username')
         senha = request.POST.get('senha')
 
-        # Usando username para autenticar, por padrão
-        user = authenticate(request, username=email, password=senha)
-
+        user = authenticate(request, username=username, password=senha)
         if user is not None:
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, '🐾 Miau! Parece que o e-mail ou a senha estão incorretos. Confira e tente novamente para ajudar nossos amiguinhos a encontrar um lar!')
-    
+            messages.error(request, 'Nome de usuário ou senha incorretos.')
     return render(request, 'core/login.html')
 
-@login_required
+
+def cadastro_view(request):
+    if request.method == 'POST':
+        nome = request.POST.get('username')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        confirmar_senha = request.POST.get('confirmar_senha')
+        tipo_usuario = request.POST.get('tipo_usuario')
+
+        cpf = request.POST.get('cpf')
+        nome_ong = request.POST.get('nome_ong')
+        cnpj = request.POST.get('cnpj')
+        responsavel = request.POST.get('responsavel')
+
+        if senha != confirmar_senha:
+            messages.error(request, 'As senhas não coincidem.')
+            return render(request, 'core/cadastro.html')
+
+        try:
+            usuario = CustomUser .objects.create_user(
+                username=nome,
+                email=email,
+                password=senha,
+                tipo_usuario=tipo_usuario
+            )
+            if tipo_usuario == 'PESSOA':
+                if cpf:
+                    PessoaFisica.objects.create(usuario=usuario, cpf=cpf)
+                else:
+                    messages.error(request, 'CPF obrigatório para Pessoa Física.')
+                    return render(request, 'core/cadastro.html')
+            else:
+                if nome_ong and cnpj and responsavel:
+                    ONG.objects.create(usuario=usuario, nome_ong=nome_ong, cnpj=cnpj, responsavel=responsavel)
+                else:
+                    messages.error(request, 'Campos obrigatórios para ONG não preenchidos.')
+                    return render(request, 'core/cadastro.html')
+
+            messages.success(request, 'Cadastro realizado com sucesso! Faça login.')
+            return redirect('login')
+
+        except Exception as e:
+            messages.error(request, f'Erro no cadastro: {str(e)}')
+            return render(request, 'core/cadastro.html')
+
+    return render(request, 'core/cadastro.html')
+
 def home_view(request):
     return render(request, 'core/home.html')
 

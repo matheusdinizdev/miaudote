@@ -1,0 +1,235 @@
+/* --------------------- */
+/* RESET BÁSICO         */
+/* --------------------- */
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+/* --------------------- */
+/* HEADER & NAV          */
+/* --------------------- */
+
+.header {
+  height: 130px;
+  background: #A8E6C4;
+}
+
+.header-container img {
+  margin-left: 140px;
+  margin-top: 75px;
+}
+
+@media (max-width: 1000px) {
+  .header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .header-container img {
+    margin-left: 0;
+    margin-top: 0;
+  }
+}
+
+nav {
+  background: #FBEBA9;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 75px;
+}
+
+nav a {
+  color: #000;
+  font-family: Poppins, sans-serif;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+
+/* --------------------- */
+/* CONTAINER DE CADASTRO */
+/* --------------------- */
+
+.cadastro-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.cadastro-container h1 {
+  margin-bottom: 10px;
+  font-family: Prata, serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+}
+
+.cadastro-container p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
+
+/* --------------------- */
+/* FORMULÁRIO            */
+/* --------------------- */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out;
+}
+
+input:focus {
+  border-color: #333;
+  outline: none;
+}
+
+button {
+  padding: 12px;
+  background-color: #A8E6C4;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #8ddcb0;
+}
+
+
+/* --------------------- */
+/* MENSAGEM FINAL        */
+/* --------------------- */
+
+.cadastro-msg {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.cadastro-msg a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.cadastro-msg a:hover {
+  text-decoration: underline;
+}
+
+
+/* --------------------- */
+/* SELEÇÃO DE USUÁRIO    */
+/* --------------------- */
+
+.tipo-usuario {
+  border: none;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+
+.tipo-usuario legend {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.tipo-usuario label {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* --------------------- */
+/* CAMPOS ESPECÍFICOS    */
+/* --------------------- */
+
+#pessoa-fields,
+#ong-fields {
+  margin-bottom: 20px;
+}
+
+#pessoa-fields label,
+#ong-fields label {
+  font-weight: 500;
+}
+
+#pessoa-fields input,
+#ong-fields input {
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#pessoa-fields input:focus,
+#ong-fields input:focus {
+  border-color: #333;
+  outline: none;
+}

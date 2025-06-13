@@ -1,29 +1,27 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-class Usuario(models.Model):
+class CustomUser(AbstractUser):
     TIPOS = (
         ('PESSOA', 'Pessoa Física'),
         ('ONG', 'ONG'),
     )
-    nome = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    senha = models.CharField(max_length=128)
-    tipo_usuario = models.CharField(max_length=10, choices=TIPOS)
+    tipo_usuario = models.CharField(max_length=10, choices=TIPOS, blank=True)
 
     def __str__(self):
-        return self.nome
+        return self.username or self.email or str(self.pk)
 
 
 class PessoaFisica(models.Model):
-    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
+    usuario = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     cpf = models.CharField(max_length=14, unique=True)
 
     def __str__(self):
-        return f"{self.usuario.nome} (CPF: {self.cpf})"
+        return f"{self.usuario.username} (CPF: {self.cpf})"
 
 
 class ONG(models.Model):
-    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
+    usuario = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     nome_ong = models.CharField(max_length=100)
     cnpj = models.CharField(max_length=18, unique=True)
     responsavel = models.CharField(max_length=100)
@@ -52,7 +50,8 @@ class Animal(models.Model):
     contato_whatsapp = models.CharField(max_length=20)
     contato_email = models.EmailField()
     foto_url = models.URLField(blank=True)
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.nome} ({self.tipo})"
+

@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="{% static 'core/css/cadastro.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Prata&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-container">
+      <img src="{% static 'core/images/LOGO.svg' %}" alt="Logo da ONG">
+    </div>
+  </header>
+
+  <nav>
+    <a href="#quero-adotar">Quero Adotar</a>
+    <a href="#entrar">Entrar</a>
+    <a href="#sobre">Sobre</a>
+  </nav>
+
+  <main class="cadastro-container">
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h1>Seja bem-vindo</h1>
+    <p>Entre com seus dados</p>
+
+    <form action="{% url 'cadastro' %}" method="POST">
+      {% csrf_token %}
+
+      <fieldset class="tipo-usuario">
+        <label>
+          <input type="radio" name="tipo_usuario" value="PESSOA" checked onchange="alternarFormulario()"> Pessoa Física
+        </label>
+
+        <label>
+          <input type="radio" name="tipo_usuario" value="ONG" onchange="alternarFormulario()"> ONG
+        </label>
+      </fieldset>
+
+
+      <label for="username">Nome completo</label>
+      <input type="text" name="username" id="username" required>
+
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required>
+
+      <label for="senha">Senha</label>
+      <input type="password" name="senha" id="senha" required>
+
+      <label for="confirmar_senha">Confirmar senha</label>
+      <input type="password" name="confirmar_senha" id="confirmar_senha" required>
+
+      <!-- Pessoa Física -->
+      <div id="pessoa-fields">
+        <label for="cpf">CPF</label>
+        <input type="text" name="cpf" id="cpf" required>
+      </div>
+
+      <!-- ONG -->
+      <div id="ong-fields" style="display: none;">
+        <label for="nome_ong">Nome da ONG</label>
+        <input type="text" name="nome_ong" id="nome_ong">
+
+        <label for="cnpj">CNPJ</label>
+        <input type="text" name="cnpj" id="cnpj">
+
+        <label for="responsavel">Responsável</label>
+        <input type="text" name="responsavel" id="responsavel">
+      </div>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+
+
+    <p class="cadastro-msg">
+      Já tem uma conta? <a>Entrar</a>
+    </p>
+  </main>
+  <script src="{% static 'core/js/cadastro.js' %}"></script>
+</body>
+
+</html>

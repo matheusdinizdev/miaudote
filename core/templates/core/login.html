@@ -4,8 +4,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Minha Página</title>
-  <link rel="stylesheet" href="{% static 'core/css/style.css' %}" />
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'core/css/login.css' %}" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Prata&display=swap" rel="stylesheet">
 </head>
 
@@ -28,14 +28,15 @@
 
     <form method="post" action="{% url 'login' %}">
       {% csrf_token %}
-      <label for="email">Digite seu email</label>
-      <input type="email" id="email" name="email" required>
+      <label for="username">Digite seu nome de usuário</label>
+      <input type="text" id="username" name="username" required>
 
       <label for="senha">Senha</label>
       <input type="password" id="senha" name="senha" required>
 
       <button type="submit">Entrar</button>
     </form>
+
 
     {% if messages %}
     <ul>
@@ -48,11 +49,9 @@
     <div class="linha-ou">ou</div>
 
     <p class="cadastro-msg">
-      Não tem uma conta? <a href="#cadastro">Cadastre-se</a>
+      Não tem uma conta? <a href="{% url 'cadastro' %}">Cadastre-se</a>
     </p>
   </main>
-
-  <script src="{% static 'core/js/main.js' %}"></script>
 </body>
 
 </html>
