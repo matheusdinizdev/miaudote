@@ -6,27 +6,30 @@ from core.models import CustomUser , PessoaFisica, ONG, Animal
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         senha = request.POST.get('senha')
-
-        user = authenticate(request, username=username, password=senha)
-        if user is not None:
+        try:
+            user = CustomUser.objects.get(email=email)
+        except CustomUser.DoesNotExist:
+            user = None
+        if user is not None and user.check_password(senha):
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, 'Nome de usuário ou senha incorretos.')
+            messages.error(request, 'Email ou senha incorretos.')
     return render(request, 'core/login.html')
 
 
 def cadastro_view(request):
     if request.method == 'POST':
+        tipo_usuario = request.POST.get('tipo_usuario')
         nome = request.POST.get('username')
         email = request.POST.get('email')
         senha = request.POST.get('senha')
         confirmar_senha = request.POST.get('confirmar_senha')
-        tipo_usuario = request.POST.get('tipo_usuario')
 
         cpf = request.POST.get('cpf')
+
         nome_ong = request.POST.get('nome_ong')
         cnpj = request.POST.get('cnpj')
         responsavel = request.POST.get('responsavel')
@@ -36,7 +39,7 @@ def cadastro_view(request):
             return render(request, 'core/cadastro.html')
 
         try:
-            usuario = CustomUser .objects.create_user(
+            usuario = CustomUser.objects.create_user(
                 username=nome,
                 email=email,
                 password=senha,

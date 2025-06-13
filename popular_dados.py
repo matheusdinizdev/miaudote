@@ -1,4 +1,5 @@
 # python manage.py shell < popular_dados.py
+# Precisa ser alterado, houve mudanças no modelo de dados
 
 from core.models import Usuario, PessoaFisica, ONG, Animal
 import random
