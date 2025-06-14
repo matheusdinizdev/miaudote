@@ -67,7 +67,8 @@ def cadastro_view(request):
     return render(request, 'core/cadastro.html')
 
 def home_view(request):
-    return render(request, 'core/home.html')
+    animais = Animal.objects.all().order_by('-id')
+    return render(request, 'core/home.html', {'animais': animais})
 
 def logout_view(request):
     logout(request)
@@ -75,11 +76,6 @@ def logout_view(request):
 
 def sobre_view(request):
     return render(request, 'core/sobre.html')
-
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from .models import Animal
 
 @login_required
 def cadastrar_animal_view(request):
@@ -108,6 +104,6 @@ def cadastrar_animal_view(request):
             foto=foto,
             usuario=request.user
         )
-        messages.success(request, 'Pet cadastrado com sucesso!')
+        messages.success(request, 'Animal cadastrado com sucesso!')
         return redirect('home')
     return render(request, 'core/cadastrar_animal.html')

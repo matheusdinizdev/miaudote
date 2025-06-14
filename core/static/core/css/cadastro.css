@@ -78,6 +78,20 @@ nav a {
   transition: background-color 0.3s ease;
 }
 
+@media (max-width: 650px) {
+  nav {
+    flex-wrap: wrap;
+    gap: 20px;
+    height: auto;
+    padding: 10px;
+  }
+
+  nav a {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+}
+
 
 /* --------------------- */
 /* CONTAINER DE CADASTRO */

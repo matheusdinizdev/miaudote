@@ -1,14 +1,7 @@
-/* --------------------- */
-/* RESET BÁSICO         */
-/* --------------------- */
-
+/* CSS RESET */
 html {
   box-sizing: border-box;
   font-size: 16px;
-}
-
-*, *::before, *::after {
-  box-sizing: inherit;
 }
 
 body, h1, h2, h3, h4, h5, h6, p, ol, ul {
@@ -30,10 +23,7 @@ img {
   max-width: 100%;
 }
 
-
-/* --------------------- */
-/* HEADER & NAV          */
-/* --------------------- */
+/* HEADER */
 
 .header {
   height: 130px;
@@ -63,19 +53,19 @@ nav {
   background: #FBEBA9;
   height: 45px;
   display: flex;
+  gap: 75px;
   align-items: center;
   justify-content: center;
-  gap: 75px;
 }
 
 nav a {
   color: #000;
-  font-family: Poppins, sans-serif;
+  font-family: Poppins;
   font-size: 15px;
   padding: 10px;
   border-radius: 5px;
-  text-transform: uppercase;
   transition: background-color 0.3s ease;
+  text-transform: uppercase;
 }
 
 @media (max-width: 650px) {
@@ -92,18 +82,9 @@ nav a {
   }
 }
 
-.sobre-container {
-  max-width: 1000px;
-  margin: 50px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-  text-align: left;
-}
-
-.sobre-container h2 {
-  margin-bottom: 10px;
+main h1 {
+  margin-top: 50px;
+  margin-bottom: 20px;
   font-family: Prata, serif;
   font-size: 40px;
   font-style: normal;
@@ -111,8 +92,37 @@ nav a {
   text-align: center;
 }
 
-.sobre-container p {
-  margin-bottom: 20px;
+footer p {
+  margin-top: 20px;
   font-size: 20px;
+  text-align: center;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  width: 300px;
+  text-align: center;
+}
+
+.card p {
   text-align: left;
+  margin-bottom: 10px;
+}
+
+.card img {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover; 
+  border-radius: 8px; 
 }
