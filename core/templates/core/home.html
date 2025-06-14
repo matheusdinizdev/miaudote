@@ -3,10 +3,9 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Cadastro</title>
-  <link rel="stylesheet" href="{% static 'core/css/home.css' %}">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Prata&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Home - MIAUDOTE</title>
+  <link rel="stylesheet" href="{% static 'core/css/home.css' %}" />
 </head>
 
 <body>
@@ -25,6 +24,32 @@
 
   <main class="animais-container">
     <h1>Animais Disponíveis para Adoção</h1>
+
+    <div class="filtros">
+      <form id="form-filtros" method="GET" action="{% url 'home' %}">
+        <label for="tipo">Tipo:</label>
+        <select name="tipo" id="tipo">
+          <option value="">Todos</option>
+          <option value="Cachorro">Cachorro</option>
+          <option value="Gato">Gato</option>
+          <option value="Outro">Outro</option>
+        </select>
+        <label for="porte">Porte:</label>
+        <select name="porte" id="porte">
+          <option value="">Todos</option>
+          <option value="Pequeno">Pequeno</option>
+          <option value="Médio">Médio</option>
+          <option value="Grande">Grande</option>
+        </select>
+        <label for="idade_min">Idade Mínima:</label>
+        <input type="number" name="idade_min" id="idade_min" min="0">
+        <label for="idade_max">Idade Máxima:</label>
+        <input type="number" name="idade_max" id="idade_max" min="0">
+        <button type="submit">Filtrar</button>
+        <button type="button" id="btn-limpar">Limpar filtros</button>
+      </form>
+    </div>
+
     <div class="cards-container">
       {% for animal in animais %}
       <div class="card">
@@ -39,9 +64,11 @@
       {% endfor %}
     </div>
   </main>
+
   <footer>
     <p>&copy; 2023 MIAUDOTE. Todos os direitos reservados.</p>
   </footer>
+  <script src="{% static 'core/js/home.js' %}"></script>
 </body>
 
 </html>

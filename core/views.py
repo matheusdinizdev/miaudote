@@ -66,9 +66,28 @@ def cadastro_view(request):
 
     return render(request, 'core/cadastro.html')
 
+from django.shortcuts import render
+from .models import Animal
+
 def home_view(request):
-    animais = Animal.objects.all().order_by('-id')
+    tipo = request.GET.get('tipo')
+    porte = request.GET.get('porte')
+    idade_min = request.GET.get('idade_min')
+    idade_max = request.GET.get('idade_max')
+
+    animais = Animal.objects.all()
+
+    if tipo:
+        animais = animais.filter(tipo=tipo)
+    if porte:
+        animais = animais.filter(porte=porte)
+    if idade_min:
+        animais = animais.filter(idade__gte=idade_min)
+    if idade_max:
+        animais = animais.filter(idade__lte=idade_max)
+
     return render(request, 'core/home.html', {'animais': animais})
+
 
 def logout_view(request):
     logout(request)
