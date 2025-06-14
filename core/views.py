@@ -19,7 +19,6 @@ def login_view(request):
             messages.error(request, 'Email ou senha incorretos.')
     return render(request, 'core/login.html')
 
-
 def cadastro_view(request):
     if request.method == 'POST':
         tipo_usuario = request.POST.get('tipo_usuario')
@@ -73,3 +72,6 @@ def home_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def sobre_view(request):
+    return render(request, 'core/sobre.html')

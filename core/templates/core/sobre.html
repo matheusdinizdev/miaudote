@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Sobre</title>
+  <link rel="stylesheet" href="{% static 'core/css/sobre.css' %}" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Prata&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-container">
+      <img src="{% static 'core/images/LOGO.svg' %}" alt="Logo da ONG">
+    </div>
+  </header>
+
+  <nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'login' %}">Entrar</a>
+    <a href="{% url 'sobre' %}">Sobre</a>
+  </nav>
+
+  <main class="sobre-container">
+    <h2>Sobre o MIAUDOTE</h2>
+    <p>🐶 O MIAUDOTE é uma plataforma dedicada à adoção responsável de animais. Nosso objetivo é conectar pessoas que desejam adotar um animal de estimação com ONGs e protetores independentes que precisam de ajuda para encontrar lares amorosos para os animais sob seus cuidados.</p>
+    <p>🐈 Com uma interface amigável e recursos úteis, buscamos facilitar todo o processo de adoção, promovendo o bem-estar animal e a conscientização sobre a importância da adoção.</p>
+  </main>
+</body>
+
+</html>
