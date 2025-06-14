@@ -75,3 +75,39 @@ def logout_view(request):
 
 def sobre_view(request):
     return render(request, 'core/sobre.html')
+
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import Animal
+
+@login_required
+def cadastrar_animal_view(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        tipo = request.POST.get('tipo')
+        porte = request.POST.get('porte')
+        idade = request.POST.get('idade')
+        descricao = request.POST.get('descricao')
+        contato_whatsapp = request.POST.get('contato_whatsapp')
+        contato_email = request.POST.get('contato_email')
+        foto = request.FILES.get('foto')
+
+        if not (nome and tipo and porte and idade and descricao and contato_whatsapp and contato_email):
+            messages.error(request, 'Por favor, preencha todos os campos obrigatórios.')
+            return redirect('cadastrar_animal')
+        
+        Animal.objects.create(
+            nome=nome,
+            tipo=tipo,
+            porte=porte,
+            idade=idade,
+            descricao=descricao,
+            contato_whatsapp=contato_whatsapp,
+            contato_email=contato_email,
+            foto=foto,
+            usuario=request.user
+        )
+        messages.success(request, 'Pet cadastrado com sucesso!')
+        return redirect('home')
+    return render(request, 'core/cadastrar_animal.html')

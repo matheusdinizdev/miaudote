@@ -50,7 +50,7 @@ class Animal(models.Model):
     descricao = models.TextField()
     contato_whatsapp = models.CharField(max_length=20)
     contato_email = models.EmailField()
-    foto_url = models.URLField(blank=True)
+    foto = models.ImageField(upload_to='fotos_pets/', blank=True, null=True)
     usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):

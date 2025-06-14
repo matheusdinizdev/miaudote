@@ -19,3 +19,6 @@ db.sqlite3
 
 # Arquivos do MacOS
 .DS_Store
+
+# Pasta com fotos para testar
+fotos-animais-teste

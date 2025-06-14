@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="{% static 'core/css/cadastrar_animal.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Prata&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-container">
+      <img src="{% static 'core/images/LOGO.svg' %}" alt="Logo da ONG">
+    </div>
+  </header>
+
+  <nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'login' %}">Entrar</a>
+    <a href="{% url 'sobre' %}">Sobre</a>
+    <a href="{% url 'cadastrar_animal' %}">Cadastrar Animal</a>
+  </nav>
+
+  <main class="cadastro-pet-container">
+    <h1>Cadastrar Pet</h1>
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="nome">Nome</label>
+      <input type="text" name="nome" id="nome" required>
+
+      <label for="tipo">Tipo</label>
+      <select name="tipo" id="tipo" required>
+        <option value="Cachorro">Cachorro</option>
+        <option value="Gato">Gato</option>
+        <option value="Outro">Outro</option>
+      </select>
+
+      <label for="porte">Porte</label>
+      <select name="porte" id="porte" required>
+        <option value="Pequeno">Pequeno</option>
+        <option value="Médio">Médio</option>
+        <option value="Grande">Grande</option>
+      </select>
+
+      <label for="idade">Idade (em anos)</label>
+      <input type="number" name="idade" id="idade" min="0" required>
+
+      <label for="descricao">Descrição</label>
+      <textarea name="descricao" id="descricao" rows="4" required></textarea>
+
+      <label for="contato_whatsapp">Contato WhatsApp</label>
+      <input type="text" name="contato_whatsapp" id="contato_whatsapp" required>
+
+      <label for="contato_email">Contato Email</label>
+      <input type="email" name="contato_email" id="contato_email" required>
+
+      <label for="foto">Foto do Pet</label>
+      <input type="file" name="foto" id="foto">
+
+      <button type="submit">Cadastrar Pet</button>
+    </form>
+
+    <p><a href="{% url 'home' %}">Voltar para a Home</a></p>
+  </main>
+</body>
+
+</html>
