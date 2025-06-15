@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from core.models import CustomUser , PessoaFisica, ONG, Animal
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseForbidden
 
 def login_view(request):
     if request.method == 'POST':
@@ -75,7 +77,7 @@ def home_view(request):
     idade_min = request.GET.get('idade_min')
     idade_max = request.GET.get('idade_max')
 
-    animais = Animal.objects.all()
+    animais = Animal.objects.all().order_by('-id')
 
     if tipo:
         animais = animais.filter(tipo=tipo)
@@ -126,3 +128,14 @@ def cadastrar_animal_view(request):
         messages.success(request, 'Animal cadastrado com sucesso!')
         return redirect('home')
     return render(request, 'core/cadastrar_animal.html')
+
+@login_required
+def excluir_animal_view(request, animal_id):
+    animal = get_object_or_404(Animal, id=animal_id)
+    if animal.usuario != request.user:
+        return HttpResponseForbidden("Você não tem permissão para excluir esse animal.")
+    if request.method == "POST":
+        animal.delete()
+        messages.success(request, "Animal excluído com sucesso!")
+        return redirect('home')
+    return redirect('home')

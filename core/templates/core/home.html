@@ -71,6 +71,13 @@
         <p>Idade: {{ animal.idade }} anos</p>
         <p>Descrição: {{ animal.descricao }}</p>
         <p>Contato: {{ animal.contato_whatsapp }}</p>
+
+        {% if user.is_authenticated and animal.usuario == user %}
+        <form action="{% url 'excluir_animal' animal.id %}" method="POST" onsubmit="return confirm('Tem certeza que quer excluir este animal?');" class="form-excluir">
+          {% csrf_token %}
+          <button type="submit" class="btn-excluir">Excluir</button>
+        </form>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
