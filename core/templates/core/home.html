@@ -64,7 +64,11 @@
     <div class="cards-container">
       {% for animal in animais %}
       <div class="card">
+        {% if animal.foto %}
         <img src="{{ animal.foto.url }}" alt="{{ animal.nome }}">
+        {% else %}
+        <img src="{% static 'core/images/default-user.png' %}" alt="Imagem não disponível">
+        {% endif %}
         <h2>{{ animal.nome }}</h2>
         <p>Tipo: {{ animal.tipo }}</p>
         <p>Porte: {{ animal.porte }}</p>
